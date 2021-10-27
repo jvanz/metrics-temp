@@ -21,7 +21,7 @@
             "version": "v1",
             "resource": "pods"
         },
-        "name": "nginx",
+        "name": "nginx-bad",
         "namespace": "default",
         "operation": "CREATE",
         "userInfo": {

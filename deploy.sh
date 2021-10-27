@@ -52,7 +52,7 @@ spec:
   module: registry://ghcr.io/kubewarden/policies/safe-labels:v0.1.6
   settings:
     mandatory_labels:
-    - owner
+    - team
   rules:
     - apiGroups:
         - ""
@@ -71,6 +71,14 @@ kubectl port-forward -n prometheus --address 0.0.0.0 svc/prometheus-operated 909
 kubectl port-forward -n prometheus --address 0.0.0.0 svc/prometheus-grafana 8080:80 &> /dev/null &
 kubectl port-forward -n kubewarden svc/policy-server-ha-policy-server 8889:8889 &> /dev/null &
 kubectl port-forward -n kubewarden svc/policy-server-ha-policy-server 8443:8443 &> /dev/null &
-watch -n1 curl -k -L -XPOST -d '@request-pod-multiple-containers.json' -H 'Content-Type: application/json' https://localhost:8443/validate/safe-labels &> /dev/null &
+watch -n1 curl -k -L -XPOST -d '@request-pod-multiple-containers-bad.json' -H 'Content-Type: application/json' https://localhost:8443/validate/safe-labels &> /dev/null &
+watch -n0.5 curl -k -L -XPOST -d '@request-pod-multiple-containers-good.json' -H 'Content-Type: application/json' https://localhost:8443/validate/safe-labels &> /dev/null &
 
-echo "curl -vvv -k -L -XPOST -d '@request-pod-multiple-containers.json' -H 'Content-Type: application/json' https://localhost:8443/validate/safe-labels"
+set +x
+
+echo
+echo
+echo "Bad request:"
+echo "curl -vvv -k -L -XPOST -d '@request-pod-multiple-containers-bad.json' -H 'Content-Type: application/json' https://localhost:8443/validate/safe-labels"
+echo "Good request:"
+echo "curl -vvv -k -L -XPOST -d '@request-pod-multiple-containers-good.json' -H 'Content-Type: application/json' https://localhost:8443/validate/safe-labels"
