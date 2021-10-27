@@ -22,7 +22,7 @@ kubectl apply -f https://github.com/open-telemetry/opentelemetry-operator/releas
 kubectl wait --for=condition=Available deployment --timeout=2m -n opentelemetry-operator-system --all
 helm install --wait --create-namespace --namespace prometheus --values prometheus-values.yaml prometheus prometheus-community/kube-prometheus-stack
 helm install --wait --namespace kubewarden kubewarden-crds ~/projects/kubewarden/helm-charts/charts/kubewarden-crds
-helm install --wait --namespace kubewarden --values values.yaml kubewarden-controller ~/projects/kubewarden/helm-charts/charts/kubewarden-controller
+helm install --wait --namespace kubewarden --values kubewarden-values.yaml kubewarden-controller ~/projects/kubewarden/helm-charts/charts/kubewarden-controller
 kubectl apply -f - <<EOF
 apiVersion: policies.kubewarden.io/v1alpha2
 kind: PolicyServer
