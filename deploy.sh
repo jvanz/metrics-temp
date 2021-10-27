@@ -36,7 +36,7 @@ spec:
     value: otlp
   - name: KUBEWARDEN_ENABLE_METRICS
     value: "1"
-  image: registry.ereslibre.net/kubewarden/policy-server:latest
+  image: ghcr.io/ereslibre/kubewarden-demo/policy-server:opentelemetry
   replicas: 3
   serviceAccountName: policy-server
 EOF

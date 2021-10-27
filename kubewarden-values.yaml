@@ -1,10 +1,10 @@
 image:
-  repository: registry.ereslibre.net/kubewarden/kubewarden-controller
-  tag: latest
+  repository: ghcr.io/ereslibre/kubewarden-demo/kubewarden-controller
+  tag: opentelemetry
 policyServer:
   image:
-    repository: registry.ereslibre.net/kubewarden/policy-server
-    tag: latest
+    repository: ghcr.io/ereslibre/kubewarden-demo/policy-server
+    tag: opentelemetry
   env:
   - name: KUBEWARDEN_LOG_LEVEL
     value: info
