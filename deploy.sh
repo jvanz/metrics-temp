@@ -53,11 +53,11 @@ spec:
     - team
   rules:
     - apiGroups:
-        - ""
+        - apps
       apiVersions:
         - v1
       resources:
-        - pods
+        - deployments
       operations:
         - CREATE
         - UPDATE
