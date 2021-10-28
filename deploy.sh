@@ -18,6 +18,7 @@ kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.5
 kubectl wait --for=condition=Available deployment --timeout=2m -n cert-manager --all
 kubectl apply -f https://github.com/open-telemetry/opentelemetry-operator/releases/latest/download/opentelemetry-operator.yaml
 kubectl wait --for=condition=Available deployment --timeout=2m -n opentelemetry-operator-system --all
+helm repo add --force-update prometheus-community https://prometheus-community.github.io/helm-charts
 helm install --wait --create-namespace --namespace prometheus --values prometheus-values.yaml prometheus prometheus-community/kube-prometheus-stack
 helm install --wait --namespace kubewarden kubewarden-crds helm-charts/charts/kubewarden-crds
 helm install --wait --namespace kubewarden --values kubewarden-values.yaml kubewarden-controller helm-charts/charts/kubewarden-controller
