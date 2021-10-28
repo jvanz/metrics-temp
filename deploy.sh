@@ -53,14 +53,17 @@ spec:
     - team
   rules:
     - apiGroups:
-        - apps
+        - ""
       apiVersions:
         - v1
       resources:
-        - deployments
+        - pods
       operations:
         - CREATE
         - UPDATE
+  namespaceSelector:
+    matchLabels:
+      kubernetes.io/metadata.name: "default"
   mutating: false
 EOF
 kubectl wait --for=condition=PolicyActive clusteradmissionpolicy safe-labels
